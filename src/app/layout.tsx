@@ -37,9 +37,13 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
         <EnvironmentBanner
           aiLive={ai.liveEnabled}
-          chainReachable={chain.reachable && chain.contractDeployed}
-          chainLabel={chain.chainLabel}
-          simulation={chain.simulationMode}
+          chain={{
+            configured: chain.configured,
+            reachable: chain.reachable,
+            contractDeployed: chain.contractDeployed,
+            chainLabel: chain.chainLabel,
+            simulationMode: chain.simulationMode,
+          }}
         />
 
         <header className="sticky top-0 z-30 border-b border-line bg-paper/90 backdrop-blur">

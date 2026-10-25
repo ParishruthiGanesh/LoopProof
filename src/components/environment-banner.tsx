@@ -3,14 +3,16 @@ import { Badge } from "./ui";
 /** Always-visible, plain statement of which integrations are live right now. */
 export function EnvironmentBanner({
   aiLive,
-  chainReachable,
-  chainLabel,
-  simulation,
+  chain,
 }: {
   aiLive: boolean;
-  chainReachable: boolean;
-  chainLabel: string;
-  simulation: boolean;
+  chain: {
+    configured: boolean;
+    reachable: boolean;
+    contractDeployed: boolean;
+    chainLabel: string;
+    simulationMode: boolean;
+  };
 }) {
   return (
     <div className="border-b border-forest-700 bg-forest-800 text-forest-50">
@@ -27,21 +29,56 @@ export function EnvironmentBanner({
               AI analysis: example mode (no API key)
             </Badge>
           )}
-          {simulation ? (
-            <Badge tone="amber" glyph="◇">
-              Chain: simulation mode
-            </Badge>
-          ) : chainReachable ? (
-            <Badge tone="lime" glyph="⛓">
-              Chain: {chainLabel}
-            </Badge>
-          ) : (
-            <Badge tone="amber" glyph="○">
-              Chain: not reachable
-            </Badge>
-          )}
+          <ChainBadge chain={chain} />
         </span>
       </div>
     </div>
+  );
+}
+
+/** These four states are genuinely different and the banner says which it is. */
+function ChainBadge({
+  chain,
+}: {
+  chain: {
+    configured: boolean;
+    reachable: boolean;
+    contractDeployed: boolean;
+    chainLabel: string;
+    simulationMode: boolean;
+  };
+}) {
+  if (chain.simulationMode) {
+    return (
+      <Badge tone="amber" glyph="◇">
+        Chain: simulation mode
+      </Badge>
+    );
+  }
+  if (!chain.configured) {
+    return (
+      <Badge tone="amber" glyph="○">
+        Chain: no contract configured
+      </Badge>
+    );
+  }
+  if (!chain.reachable) {
+    return (
+      <Badge tone="amber" glyph="○">
+        Chain: not reachable
+      </Badge>
+    );
+  }
+  if (!chain.contractDeployed) {
+    return (
+      <Badge tone="amber" glyph="!">
+        Chain: no contract at the configured address
+      </Badge>
+    );
+  }
+  return (
+    <Badge tone="lime" glyph="⛓">
+      Chain: {chain.chainLabel}
+    </Badge>
   );
 }
