@@ -178,7 +178,7 @@ export async function anchor(request: AnchorRequest): Promise<AnchorResult> {
     .limit(1);
 
   const prior = existing[0];
-  if (prior && (prior.status === "confirmed" || prior.status === "simulated")) {
+  if (prior && prior.status === "simulated") {
     return {
       chainTransactionId: prior.id,
       status: prior.status,
@@ -187,6 +187,39 @@ export async function anchor(request: AnchorRequest): Promise<AnchorResult> {
       error: null,
       deduplicated: true,
     };
+  }
+  if (prior && prior.status === "confirmed") {
+    // A confirmed row is only still true if it was sent to the contract we are
+    // configured for now, AND its transaction still exists on that chain.
+    // Redeploying gives a new address; restarting a development chain gives the
+    // same address with none of the history. Either way a stale row must not
+    // keep claiming confirmation.
+    const sameContract =
+      (prior.contractAddress ?? "").toLowerCase() === serverEnv.contractAddress.toLowerCase();
+    const stillThere = sameContract ? await recordedTransactionStillExists(prior.txHash) : false;
+    if (stillThere !== false) {
+      return {
+        chainTransactionId: prior.id,
+        status: prior.status,
+        txHash: prior.txHash,
+        blockNumber: prior.blockNumber,
+        error: null,
+        deduplicated: true,
+      };
+    }
+    await db
+      .update(schema.chainTransactions)
+      .set({
+        status: "not_anchored",
+        txHash: null,
+        blockNumber: null,
+        confirmedAt: null,
+        contractAddress: serverEnv.contractAddress || null,
+        errorMessage:
+          "The previous confirmation does not apply to the contract currently configured. The chain was most likely reset or redeployed, so this anchor is being re-sent.",
+        updatedAt: new Date().toISOString(),
+      })
+      .where(eq(schema.chainTransactions.id, prior.id));
   }
   if (prior && prior.status === "pending" && prior.txHash) {
     // A previous attempt sent a transaction; find out how it ended rather than
@@ -346,6 +379,26 @@ export async function anchor(request: AnchorRequest): Promise<AnchorResult> {
   // The transaction is only "confirmed" once its receipt says so.
   const settled = await settlePending(rowId);
   return { ...settled, deduplicated: false };
+}
+
+/**
+ * Does the recorded transaction still exist on the chain we are configured for?
+ *   true  — yes
+ *   false — definitely not; the row is stale
+ *   null  — could not tell (RPC unreachable). The caller treats this as "leave
+ *           it alone", because re-sending on a flaky connection is worse than
+ *           waiting.
+ */
+async function recordedTransactionStillExists(txHash: string | null): Promise<boolean | null> {
+  if (!txHash) return false;
+  try {
+    const receipt = await publicClient().getTransactionReceipt({ hash: txHash as Hex });
+    return receipt.status === "success";
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    if (/could not be found|not be found|TransactionReceiptNotFound/i.test(message)) return false;
+    return null; // network problem, not an answer
+  }
 }
 
 /** Waits for a receipt and records the real outcome. */

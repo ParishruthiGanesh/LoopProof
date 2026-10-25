@@ -137,11 +137,33 @@ retrying with the real one:
 - Re-settling a confirmed row keeps it confirmed.
 - `npm run chain:anchor` run twice reports `0 anchored, 12 already anchored`.
 
-A weakness found and fixed during this testing: a send to an address with no contract code
-returns a *successful* receipt, so an anchor to a wrong address would have been marked
-confirmed. `anchor()` now checks for contract code and simulates the call before sending,
-so a call the contract would reject fails with the contract's own error and nothing bogus
-is ever marked confirmed.
+**Deployment restart path** — tested by running the container entrypoint three times
+against a persisted database with the chain restarting empty each time:
+
+- First boot: migrations applied, data seeded, chain started, contract deployed, all 12
+  listings anchored and confirmed.
+- Second boot: seeding correctly skipped, chain restarted empty.
+- Third boot: the stale confirmations were detected and all 12 listings re-anchored
+  against the chain now running.
+- With a contract redeployed to a new address and no re-anchoring, the passport shows
+  **"LoopProof's record and the chain disagree"** and a *contradicted by the chain* badge,
+  rather than displaying a confirmation it cannot stand behind. Running
+  `npm run chain:anchor` clears it.
+
+### Two weaknesses found and fixed during this testing
+
+1. **A send to an address with no contract code returns a *successful* receipt**, so an
+   anchor to a wrong address would have been marked confirmed. `anchor()` now checks for
+   contract code and simulates the call before sending, so a call the contract would
+   reject fails with the contract's own error and nothing bogus is ever marked confirmed.
+2. **A confirmed anchor row outlived the deployment it belonged to.** After a development
+   chain was reset or the contract redeployed, the idempotency check short-circuited on
+   the stale row and the passport simultaneously claimed "Confirmed on local dev chain"
+   and "nothing registered for this item key". A confirmed row is now only reused when it
+   names the contract currently configured *and* its transaction still exists on that
+   chain; otherwise it is marked stale and re-sent. If the RPC is unreachable the row is
+   left alone rather than re-sent, because re-sending on a flaky connection is worse than
+   waiting. Covered by `tests/chain.test.ts`.
 
 ## Known limitations
 
@@ -166,6 +188,10 @@ is ever marked confirmed.
 - **Browser coverage is Chromium only.**
 - **Mobile checks are layout and overflow only** at 390px; no touch-gesture or real-device
   testing.
+- **The Docker image build is untested.** No Docker daemon was available. The entrypoint
+  script `docker/entrypoint.sh` was run directly and verified end to end: migrations,
+  idempotent seeding, embedded chain startup, contract deployment, anchoring, serving, and
+  the restart path with a persisted database against a fresh chain.
 - **`npm run db:reset` does not reset the chain.** If you reset the database while a node
   is still holding older state, an item that is mid-transfer on chain cannot be re-anchored
   — correct behaviour, but it needs a node restart and redeploy. The app and the anchor

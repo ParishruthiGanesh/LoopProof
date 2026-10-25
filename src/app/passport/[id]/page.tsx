@@ -41,6 +41,9 @@ export default async function PassportPage({ params }: { params: Promise<{ id: s
   const onChain = chainRead.status === "found" ? chainRead.item : null;
 
   const { item } = view;
+  // A recorded "confirmed" anchor that the chain does not know about is a
+  // contradiction, and the page says so rather than showing both as facts.
+  const contradicted = view.anchor?.status === "confirmed" && chainRead.status === "not_registered";
   const confirmedSpecs = view.specs.filter((s) => s.confirmedByOwner);
   const completed = history.filter((h) => h.transfer.state === "completed");
 
@@ -279,9 +282,24 @@ export default async function PassportPage({ params }: { params: Promise<{ id: s
       {/* ------------------------------------------------------- anchor status */}
       <Card className="p-5">
         <h2 className="text-lg">Evidence anchoring</h2>
+        {contradicted ? (
+          <Callout tone="problem" title="LoopProof's record and the chain disagree">
+            LoopProof recorded this anchor as confirmed, but the chain it is configured for
+            has nothing registered under this item key. The usual cause is a development
+            chain that was reset or redeployed after the anchor was written. Treat the
+            status below as unverified: the anchor will be re-sent the next time this
+            item&rsquo;s evidence is published.
+          </Callout>
+        ) : null}
+
         <dl className="mt-3 divide-y divide-line">
           <KeyValue label="LoopProof's recorded status">
             <ChainStatusBadge status={view.anchor?.status ?? "not_anchored"} />
+            {contradicted ? (
+              <Badge tone="clay" glyph="!">
+                contradicted by the chain
+              </Badge>
+            ) : null}
           </KeyValue>
           <KeyValue label="Public manifest version">
             {view.manifest

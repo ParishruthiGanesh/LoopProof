@@ -1,0 +1,36 @@
+# Render blueprint for a shareable LoopProof demonstration.
+#
+# Create the service from this file: Render dashboard -> New -> Blueprint,
+# point it at this repository and branch. See docs/DEPLOY.md.
+services:
+  - type: web
+    name: loopproof
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: starter # 512 MB. Use "standard" if you set LOOPPROOF_EMBED_CHAIN=true.
+    healthCheckPath: /api/status
+    envVars:
+      # Generated once by Render and kept across deploys, so sessions survive.
+      - key: LOOPPROOF_SESSION_SECRET
+        generateValue: true
+      # Items' QR codes encode an absolute URL, so the public origin must be known.
+      # RENDER_EXTERNAL_URL is injected by Render and read by the entrypoint.
+      - key: LOOPPROOF_DATABASE_PATH
+        value: /data/loopproof.db
+      - key: LOOPPROOF_UPLOAD_DIR
+        value: /data/uploads
+      # Off by default: a Hardhat node needs roughly 300-400 MB of its own, which
+      # does not fit beside the app on a 512 MB instance. With it off the app
+      # states plainly that no contract is configured.
+      - key: LOOPPROOF_EMBED_CHAIN
+        value: "false"
+      # Set this in the Render dashboard, not here, to keep it out of the repo.
+      - key: ANTHROPIC_API_KEY
+        sync: false
+    # Without a disk, /data is rebuilt from the seed on every deploy and
+    # restart. That is fine for a demonstration; add a disk to keep real
+    # activity and uploaded photographs.
+    disk:
+      name: loopproof-data
+      mountPath: /data
+      sizeGB: 1

@@ -302,8 +302,26 @@ any shared deployment.
 
 ---
 
+## Sharing it with other people
+
+The fastest way to put it in front of someone is a tunnel from your own machine, which
+keeps the full stack including the working chain:
+
+```bash
+npx cloudflared tunnel --url http://localhost:3000
+```
+
+For a permanent link, `render.yaml` and `fly.toml` are in the repository and there is a
+`Dockerfile` that works on any container host. See [`docs/DEPLOY.md`](docs/DEPLOY.md) for
+all four options and their trade-offs — in particular, SQLite needs a persistent writable
+filesystem, so serverless platforms will not work without swapping the database driver.
+
+---
+
 ## Further reading
 
+- [`docs/USER-GUIDE.md`](docs/USER-GUIDE.md) — how to drive the app as a donor and as a recipient
+- [`docs/DEPLOY.md`](docs/DEPLOY.md) — four ways to share it, and what each gives up
 - [`docs/DEMO-SCRIPT.md`](docs/DEMO-SCRIPT.md) — the four-minute demonstration, step by step
 - [`docs/DEVPOST.md`](docs/DEVPOST.md) — submission draft
 - [`docs/DIFFERENCES.md`](docs/DIFFERENCES.md) — how this differs from a conventional reuse marketplace
