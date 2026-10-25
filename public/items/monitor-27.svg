@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" width="640" height="480" role="img" aria-label="Example illustration: 27-inch monitor">
+  <rect width="640" height="480" fill="#f7f5ef"/>
+  <g>
+      <rect x="80" y="54" width="480" height="276" rx="14" fill="#232f2a"/>
+      <rect x="94" y="68" width="452" height="232" rx="6" fill="#cfe8da"/>
+      <rect x="290" y="330" width="60" height="46" fill="#5d6b64"/>
+      <rect x="214" y="372" width="212" height="18" rx="9" fill="#232f2a"/>
+      <circle cx="320" cy="312" r="4" fill="#9fd356"/></g>
+  <g>
+    <rect x="16" y="430" width="226" height="30" rx="15" fill="#1f5137" opacity="0.92"/>
+    <text x="30" y="450" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="600" fill="#f7f5ef">Example illustration</text>
+  </g>
+  <text x="624" y="450" text-anchor="end" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="#5d6b64">27-inch monitor</text>
+</svg>

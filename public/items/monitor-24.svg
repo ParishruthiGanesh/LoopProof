@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" width="640" height="480" role="img" aria-label="Example illustration: 24-inch monitor">
+  <rect width="640" height="480" fill="#f7f5ef"/>
+  <g>
+      <rect x="110" y="70" width="420" height="250" rx="12" fill="#1b2a23"/>
+      <rect x="124" y="84" width="392" height="206" rx="6" fill="#bfe3cd"/>
+      <rect x="124" y="84" width="392" height="206" rx="6" fill="url(#g1)" opacity="0.5"/>
+      <defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#ffffff" stop-opacity="0.75"/><stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+      </linearGradient></defs>
+      <rect x="296" y="320" width="48" height="52" fill="#5d6b64"/>
+      <rect x="236" y="368" width="168" height="16" rx="8" fill="#1b2a23"/>
+      <circle cx="320" cy="302" r="4" fill="#9fd356"/></g>
+  <g>
+    <rect x="16" y="430" width="226" height="30" rx="15" fill="#1f5137" opacity="0.92"/>
+    <text x="30" y="450" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="600" fill="#f7f5ef">Example illustration</text>
+  </g>
+  <text x="624" y="450" text-anchor="end" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="#5d6b64">24-inch monitor</text>
+</svg>

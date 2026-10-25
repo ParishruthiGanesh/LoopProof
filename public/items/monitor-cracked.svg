@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" width="640" height="480" role="img" aria-label="Example illustration: Monitor with damaged panel">
+  <rect width="640" height="480" fill="#f7f5ef"/>
+  <g>
+      <rect x="110" y="70" width="420" height="250" rx="12" fill="#1b2a23"/>
+      <rect x="124" y="84" width="392" height="206" rx="6" fill="#b9c4bd"/>
+      <path d="M200 100 l90 80 l-40 30 l120 70" stroke="#2b3833" stroke-width="3" fill="none"/>
+      <path d="M290 180 l120 -40 M250 210 l-80 50" stroke="#2b3833" stroke-width="2" fill="none"/>
+      <rect x="296" y="320" width="48" height="52" fill="#5d6b64"/>
+      <rect x="236" y="368" width="168" height="16" rx="8" fill="#1b2a23"/></g>
+  <g>
+    <rect x="16" y="430" width="226" height="30" rx="15" fill="#1f5137" opacity="0.92"/>
+    <text x="30" y="450" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="600" fill="#f7f5ef">Example illustration</text>
+  </g>
+  <text x="624" y="450" text-anchor="end" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="#5d6b64">Monitor with damaged panel</text>
+</svg>

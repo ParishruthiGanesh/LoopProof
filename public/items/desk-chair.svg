@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" width="640" height="480" role="img" aria-label="Example illustration: Office task chair">
+  <rect width="640" height="480" fill="#f7f5ef"/>
+  <g>
+      <rect x="250" y="110" width="140" height="120" rx="16" fill="#3a4842"/>
+      <rect x="236" y="246" width="168" height="36" rx="12" fill="#45554e"/>
+      <rect x="312" y="282" width="16" height="60" fill="#5d6b64"/>
+      <path d="M250 352 l70 -14 l70 14" stroke="#5d6b64" stroke-width="10" fill="none" stroke-linecap="round"/>
+      <circle cx="250" cy="358" r="8" fill="#222b26"/>
+      <circle cx="390" cy="358" r="8" fill="#222b26"/></g>
+  <g>
+    <rect x="16" y="430" width="226" height="30" rx="15" fill="#1f5137" opacity="0.92"/>
+    <text x="30" y="450" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="600" fill="#f7f5ef">Example illustration</text>
+  </g>
+  <text x="624" y="450" text-anchor="end" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="#5d6b64">Office task chair</text>
+</svg>

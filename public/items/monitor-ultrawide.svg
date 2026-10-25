@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" width="640" height="480" role="img" aria-label="Example illustration: Ultrawide monitor">
+  <rect width="640" height="480" fill="#f7f5ef"/>
+  <g>
+      <rect x="40" y="130" width="560" height="170" rx="12" fill="#232f2a"/>
+      <rect x="54" y="144" width="532" height="128" rx="5" fill="#c9e4d6"/>
+      <rect x="296" y="300" width="48" height="44" fill="#5d6b64"/>
+      <rect x="226" y="340" width="188" height="16" rx="8" fill="#232f2a"/></g>
+  <g>
+    <rect x="16" y="430" width="226" height="30" rx="15" fill="#1f5137" opacity="0.92"/>
+    <text x="30" y="450" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="600" fill="#f7f5ef">Example illustration</text>
+  </g>
+  <text x="624" y="450" text-anchor="end" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="#5d6b64">Ultrawide monitor</text>
+</svg>

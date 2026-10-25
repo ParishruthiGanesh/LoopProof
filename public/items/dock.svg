@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" width="640" height="480" role="img" aria-label="Example illustration: Laptop docking station">
+  <rect width="640" height="480" fill="#f7f5ef"/>
+  <g>
+      <rect x="160" y="200" width="320" height="80" rx="14" fill="#333f39"/>
+      <rect x="186" y="228" width="30" height="14" rx="4" fill="#1c2420"/><rect x="234" y="228" width="30" height="14" rx="4" fill="#1c2420"/><rect x="282" y="228" width="30" height="14" rx="4" fill="#1c2420"/><rect x="330" y="228" width="30" height="14" rx="4" fill="#1c2420"/><rect x="378" y="228" width="30" height="14" rx="4" fill="#1c2420"/><rect x="426" y="228" width="30" height="14" rx="4" fill="#1c2420"/>
+      <rect x="160" y="282" width="320" height="10" rx="5" fill="#222b26"/>
+      <circle cx="176" cy="216" r="5" fill="#9fd356"/></g>
+  <g>
+    <rect x="16" y="430" width="226" height="30" rx="15" fill="#1f5137" opacity="0.92"/>
+    <text x="30" y="450" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="600" fill="#f7f5ef">Example illustration</text>
+  </g>
+  <text x="624" y="450" text-anchor="end" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="#5d6b64">Laptop docking station</text>
+</svg>

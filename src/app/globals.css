@@ -1,0 +1,154 @@
+@import "tailwindcss";
+
+/*
+ * LoopProof design tokens.
+ * Warm off-white paper, deep forest green primary, restrained mint and lime
+ * accents, dark readable ink. Status is always carried by a word and a shape,
+ * never by colour alone.
+ */
+@theme {
+  --color-paper: #f8f6f0;
+  --color-paper-raised: #fffefb;
+  --color-paper-sunken: #f1eee5;
+
+  --color-ink: #16211c;
+  --color-ink-soft: #3d4a43;
+  --color-ink-muted: #667268;
+
+  --color-forest-50: #eef5f0;
+  --color-forest-100: #d6e8dd;
+  --color-forest-200: #add1bc;
+  --color-forest-300: #7eb597;
+  --color-forest-400: #4f9272;
+  --color-forest-500: #2f6f52;
+  --color-forest-600: #1f5137;
+  --color-forest-700: #163d29;
+  --color-forest-800: #10291c;
+
+  --color-mint: #bfe3cd;
+  --color-mint-soft: #e3f3e9;
+  --color-lime: #9fd356;
+  --color-lime-soft: #eaf6d6;
+
+  --color-clay: #a8552f;
+  --color-clay-soft: #f7e7df;
+  --color-amber-ink: #8a5a08;
+  --color-amber-soft: #fcf1da;
+
+  --color-line: #e0dcd0;
+  --color-line-strong: #cdc8b8;
+
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  --radius-card: 14px;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-line);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    color: var(--color-ink);
+    font-weight: 650;
+    letter-spacing: -0.012em;
+    line-height: 1.25;
+  }
+
+  a {
+    color: var(--color-forest-600);
+    text-underline-offset: 3px;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* Visible focus for every interactive element, keyboard or pointer. */
+  :focus-visible {
+    outline: 2px solid var(--color-forest-500);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  button:disabled,
+  [aria-disabled="true"] {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+
+  input, select, textarea {
+    font: inherit;
+    color: var(--color-ink);
+  }
+
+  ::placeholder {
+    color: var(--color-ink-muted);
+    opacity: 1;
+  }
+
+  table {
+    border-collapse: collapse;
+  }
+
+  /* Skip link */
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 100;
+    background: var(--color-forest-600);
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: 0 0 8px 0;
+  }
+  .skip-link:focus {
+    left: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer utilities {
+  .lp-card {
+    background-color: var(--color-paper-raised);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-card);
+  }
+
+  .lp-shadow {
+    box-shadow: 0 1px 2px rgba(22, 33, 28, 0.04), 0 8px 24px -16px rgba(22, 33, 28, 0.18);
+  }
+
+  .lp-mono {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    overflow-wrap: anywhere;
+  }
+
+  .lp-spin {
+    animation: lp-spin 0.8s linear infinite;
+  }
+}
+
+@keyframes lp-spin {
+  to { transform: rotate(360deg); }
+}

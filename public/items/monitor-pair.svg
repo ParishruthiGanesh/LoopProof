@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" width="640" height="480" role="img" aria-label="Example illustration: Pair of monitors">
+  <rect width="640" height="480" fill="#f7f5ef"/>
+  <g>
+      <rect x="40" y="110" width="270" height="170" rx="10" fill="#1b2a23"/>
+      <rect x="52" y="122" width="246" height="134" rx="5" fill="#bfe3cd"/>
+      <rect x="150" y="280" width="50" height="38" fill="#5d6b64"/>
+      <rect x="110" y="314" width="130" height="14" rx="7" fill="#1b2a23"/>
+      <rect x="330" y="110" width="270" height="170" rx="10" fill="#1b2a23"/>
+      <rect x="342" y="122" width="246" height="134" rx="5" fill="#cfe8da"/>
+      <rect x="440" y="280" width="50" height="38" fill="#5d6b64"/>
+      <rect x="400" y="314" width="130" height="14" rx="7" fill="#1b2a23"/></g>
+  <g>
+    <rect x="16" y="430" width="226" height="30" rx="15" fill="#1f5137" opacity="0.92"/>
+    <text x="30" y="450" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="600" fill="#f7f5ef">Example illustration</text>
+  </g>
+  <text x="624" y="450" text-anchor="end" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="#5d6b64">Pair of monitors</text>
+</svg>

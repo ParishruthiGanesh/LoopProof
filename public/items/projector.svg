@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" width="640" height="480" role="img" aria-label="Example illustration: Portable projector">
+  <rect width="640" height="480" fill="#f7f5ef"/>
+  <g>
+      <rect x="150" y="170" width="300" height="140" rx="18" fill="#3b4741"/>
+      <circle cx="420" cy="240" r="42" fill="#222b26"/>
+      <circle cx="420" cy="240" r="28" fill="#bfe3cd"/>
+      <circle cx="420" cy="240" r="12" fill="#ffffff" opacity="0.8"/>
+      <rect x="176" y="196" width="120" height="12" rx="6" fill="#5d6b64"/>
+      <rect x="176" y="222" width="80" height="12" rx="6" fill="#5d6b64"/>
+      <circle cx="190" cy="288" r="8" fill="#9fd356"/></g>
+  <g>
+    <rect x="16" y="430" width="226" height="30" rx="15" fill="#1f5137" opacity="0.92"/>
+    <text x="30" y="450" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="600" fill="#f7f5ef">Example illustration</text>
+  </g>
+  <text x="624" y="450" text-anchor="end" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="#5d6b64">Portable projector</text>
+</svg>

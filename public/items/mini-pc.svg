@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" width="640" height="480" role="img" aria-label="Example illustration: Small desktop computer">
+  <rect width="640" height="480" fill="#f7f5ef"/>
+  <g>
+      <rect x="180" y="110" width="280" height="240" rx="12" fill="#39443e"/>
+      <rect x="196" y="126" width="248" height="24" rx="4" fill="#222b26"/>
+      <circle cx="216" cy="330" r="10" fill="#9fd356"/>
+      <rect x="240" y="300" width="60" height="8" rx="4" fill="#5d6b64"/>
+      <rect x="240" y="320" width="60" height="8" rx="4" fill="#5d6b64"/>
+      <rect x="340" y="296" width="90" height="42" rx="6" fill="#222b26"/></g>
+  <g>
+    <rect x="16" y="430" width="226" height="30" rx="15" fill="#1f5137" opacity="0.92"/>
+    <text x="30" y="450" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="600" fill="#f7f5ef">Example illustration</text>
+  </g>
+  <text x="624" y="450" text-anchor="end" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="#5d6b64">Small desktop computer</text>
+</svg>
